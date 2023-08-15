@@ -43,7 +43,7 @@ export const Navigation = () => {
   }, []);
 
   return (
-    <Navbar isBordered className="bg-gray-100 sm:w-3/4 rounded-xl m-auto mt-4">
+    <Navbar isBordered className="bg-gray-100 sm:w-3/4 rounded-xl m-auto">
       <NavbarContent className="sm:hidden" justify="start">
         <NavbarMenuToggle />
       </NavbarContent>
