@@ -5,11 +5,19 @@ import react from '@vitejs/plugin-react';
 
 export default ({ mode }) => {
   const env = loadEnv(mode, process.cwd());
+  const port = env.VITE_PORT ? parseInt(env.VITE_PORT) : 3000;
 
   return defineConfig({
     plugins: [react()],
     server: {
-      port: env.VITE_PORT ? parseInt(env.VITE_PORT) : 3000,
+      port: port,
+      proxy: {
+        '/': {
+          target: `http://localhost:${port}/`, // cambia la URL base a tu aplicación
+          changeOrigin: true,
+          rewrite: (path) => '/index.html',
+        },
+      },
     },
   });
 };
