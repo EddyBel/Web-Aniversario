@@ -1,0 +1,12 @@
+# Archivo de configuración Netlify
+
+# Configuración general
+[build]
+  command = "npm run build"  # Comando para construir tu proyecto
+  publish = "dist"           # Carpeta que se publicará
+
+# Configuración de redirecciones
+[[redirects]]
+  from = "/*"                # Desde cualquier ruta
+  to = "/index.html"         # Redirigir a index.html
+  status = 200              # Código de estado HTTP
