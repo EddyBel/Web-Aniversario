@@ -1,0 +1,16 @@
+/* Define las animaciones */
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* Clases que inicializan las animaciones y sus propiedades */
+
+.animate-fadeIn {
+  animation: fadeIn 600ms normal;
+}
