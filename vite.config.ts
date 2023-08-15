@@ -11,13 +11,6 @@ export default ({ mode }) => {
     plugins: [react()],
     server: {
       port: port,
-      proxy: {
-        '/': {
-          target: `http://localhost:${port}/`, // cambia la URL base a tu aplicación
-          changeOrigin: true,
-          rewrite: (path) => '/index.html',
-        },
-      },
     },
   });
 };
