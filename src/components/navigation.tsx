@@ -43,20 +43,20 @@ export const Navigation = () => {
   }, []);
 
   return (
-    <Navbar isBordered className="bg-gray-100 sm:w-3/4 rounded-xl m-auto">
+    <Navbar isBordered className="bg-gray-950/80 sm:w-3/4 rounded-xl m-auto backdrop-blur-lg">
       <NavbarContent className="sm:hidden" justify="start">
-        <NavbarMenuToggle />
+        <NavbarMenuToggle className="text-gray-200" />
       </NavbarContent>
 
       <NavbarContent className="sm:hidden pr-3" justify="center">
         <NavbarBrand>
-          <img src={LOGO} alt="" className="w-10" />
+          <img src={LOGO} alt="" className="w-10 img-invert" />
         </NavbarBrand>
       </NavbarContent>
 
       <NavbarContent className="hidden sm:flex gap-4" justify="center">
         <NavbarBrand>
-          <img src={LOGO} alt="" className="w-10" />
+          <img src={LOGO} alt="" className="w-10 img-invert" />
         </NavbarBrand>
         {NavigationRoutes.map((item) => (
           <NavbarItem key={`option-${item.name}-${item.path}-${Math.random()}`}>
@@ -64,8 +64,8 @@ export const Navigation = () => {
               to={item.path}
               aria-current="page"
               className={`${
-                location.pathname === item.path ? 'text-pink-400' : 'text-gray-950'
-              } transition-colors duration-200`}
+                location.pathname === item.path ? 'text-pink-300' : 'text-gray-400'
+              } transition-colors duration-200 font-Courgette`}
             >
               {item.name}
             </Link>
@@ -82,13 +82,13 @@ export const Navigation = () => {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarMenu className="p-5">
+      <NavbarMenu className="p-5 bg-gray-950">
         {NavigationRoutes.map((item, index) => (
           <NavbarMenuItem key={`${item.name}-${index}`}>
             <Link
               className={`w-full text-lg uppercase font-bold ${
-                location.pathname === item.path ? 'text-pink-400' : 'text-gray-950'
-              }`}
+                location.pathname === item.path ? 'text-pink-400' : 'text-gray-400'
+              } transition-colors duration-250 font-Courgette`}
               to={item.path}
             >
               {item.name}

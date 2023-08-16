@@ -19,10 +19,10 @@ export const Home = () => {
   }, [lettersContent]);
 
   return (
-    <div className="w-full min-h-[100vh]">
-      <section className="w-full min-h-[80vh] overflow-x-hidden relative flex justify-center items-center">
-        <div className="home-decorator-mesh-gradient w-[300px] h-[300px] sm:w-[600px] sm:h-[300px] absolute blur-[100px] rounded-full z-[-1] animate-fade animate-duration-800 animate-normal"></div>
-        <h1 className="text-5xl sm:text-8xl font-Courgette text-pink-600 animate-fade-down animate-duration-800 animate-normal">
+    <div className="w-full min-h-[100vh] overflow-hidden">
+      <section className="w-full min-h-[80vh] relative flex justify-center items-center z-10">
+        <div className="home-decorator-mesh-gradient w-[200px] h-[200px] sm:w-[400px] sm:h-[400px] absolute blur-[150px] rounded-full z-10 animate-fade animate-duration-800 animate-normal"></div>
+        <h1 className="text-5xl sm:text-8xl font-Courgette text-pink-600 animate-fade-down animate-duration-800 animate-normal z-20">
           Belem, <br /> Y{' '}
           <span className="font-Righteous text-pink-400 bg-gradient-to-tr to-pink-600 from-pink-400 text-transparent bg-clip-text">
             love

@@ -39,6 +39,7 @@ export const Album = () => {
             <Image
               isBlurred
               width={240}
+              loading="lazy"
               onClick={() => {
                 setFocusPhoto(photo.url);
                 setNamePhoto(photo.name);
@@ -58,12 +59,12 @@ export const Album = () => {
       )}
 
       <Modal size={'md'} isOpen={isOpen} onClose={onClose} backdrop="blur">
-        <ModalContent className="max-h-[90vh]">
+        <ModalContent className="max-h-[90vh] bg-black">
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1">{namePhoto}</ModalHeader>
+              <ModalHeader className="flex flex-col gap-1 text-gray-400">{namePhoto}</ModalHeader>
               <ModalBody className="flex justify-center items-center">
-                <Image isBlurred src={focusPhoto} alt="Image cover preview" className="max-h-[60vh]" />
+                <Image isBlurred src={focusPhoto} alt="Image cover preview" className="max-h-[60vh]" loading="lazy" />
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="light" onClick={onClose}>

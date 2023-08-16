@@ -15,6 +15,8 @@ import {
   LOCAL_STORAGE_NAME_GITHUB_LETTERS,
   LIMIT_OF_DAYS_TO_MAKE_REQUEST,
 } from '../web.config';
+import { getRandomItemFromArray } from '../utils/parserAndFormat';
+import { LOVE_IMGS } from '../assets';
 
 /** Contexto que permite crear las propiedades github */
 export const GithubContext = createContext<TYPE_CONTEXT_GITHUB>({
@@ -63,18 +65,21 @@ export const GithubContextProvider = ({ children }: PropsGithubContextProvider) 
   /** Obtener el contenido de las cartas extraidas previamente en github */
   const getContentLetter = async () => {
     if (letters.length > 0 && letters != undefined) {
-      const contents = [];
+      const contents: TYPE_CONTENT_LETTER[] = [];
 
       for (let i = 0; i < letters.length; i++) {
         const letter = letters[i];
         const response = await axios.get(letter.url);
-        if (response.status === 200)
+        if (response.status === 200) {
+          const cover = getRandomItemFromArray(LOVE_IMGS);
           contents.push({
             name: letter.name,
             parentFolder: letter.parentFolder,
             content: response.data,
             url: letter.url,
+            cover: cover ? cover : '',
           });
+        }
       }
 
       setBodyLetters(contents);

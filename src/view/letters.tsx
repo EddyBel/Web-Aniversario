@@ -18,6 +18,7 @@ import { TYPE_CONTENT_LETTER } from '../types/services.types';
 import { LOVE_IMGS } from '../assets/index';
 import { getRandomItemFromArray } from '../utils/parserAndFormat';
 import { Link } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 
 /** Componente que renderiza la pagina que enlista todas las cartas obtenidas desde el repositorio */
 export const Letters = () => {
@@ -25,7 +26,7 @@ export const Letters = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { lettersContent } = useGithubContext();
   const [letters, setLetters] = useState<TYPE_CONTENT_LETTER[]>();
-  const [letterContent, setLetterContent] = useState<string[]>([]);
+  const [letterContent, setLetterContent] = useState<string>();
   const [letterName, setLetterName] = useState<string>();
 
   /** Carga en el estado las cartas  obtenidas en el repsitorio de github */
@@ -40,9 +41,9 @@ export const Letters = () => {
         <section className="w-full m-auto mt-6 p-5 flex flex-wrap justify-center max-w-[950px] gap-4">
           {letters.map((letter) => {
             const ownerOfLetter =
-              letter.parentFolder && letter.parentFolder.toLowerCase().includes('edd')
-                ? 'Eduardo Rangel'
-                : 'Belem Gutierrez';
+              letter.parentFolder && letter.parentFolder.toLowerCase().includes('bel')
+                ? 'Belem Gutierrez'
+                : 'Eduardo Rangel';
 
             const name = letter.name.replace('.md', '');
             const cover =
@@ -52,24 +53,26 @@ export const Letters = () => {
             return (
               <div
                 onClick={() => {
-                  setLetterContent(letter.content.split('\n'));
+                  setLetterContent(letter.content);
                   setLetterName(name);
                   onOpen();
                 }}
                 key={`letter-${letter.url}`}
               >
-                <Card className="py-4 max-w-[280px] mb-4" key={letter.url}>
-                  <CardHeader className="pb-0 pt-2 px-4 flex-col items-start">
-                    <p className="text-tiny uppercase font-bold">Por {ownerOfLetter}</p>
-                    {/* <small className="text-default-500">{index + 1}</small> */}
-                    <h4 className="font-bold text-large text-ellipsis">{name}</h4>
+                <Card
+                  className="py-4 max-w-[280px] mb-4 bg-gradient-to-br to-black from-slate-900 text-gray-400"
+                  key={letter.url}
+                >
+                  <CardHeader className="pb-0 pt-2 w-full px-4 flex-col items-start">
+                    <p className="text-tiny uppercase font-bold text-gray-400/80">Por {ownerOfLetter}</p>
+                    <h4 className="font-bold text-large text-ellipsis capitalize">{name}</h4>
                   </CardHeader>
                   <CardBody className="overflow-visible py-2">
                     <Image
                       isBlurred
                       alt="Card background"
                       className="object-cover rounded-xl"
-                      src={cover}
+                      src={letter.cover ? letter.cover : cover}
                       width={270}
                       // height={220}
                       classNames={{
@@ -90,15 +93,15 @@ export const Letters = () => {
 
       {/* Modal que muestra el contenido de la carta */}
       <Modal scrollBehavior="inside" backdrop="blur" size={'md'} isOpen={isOpen} onClose={onClose}>
-        <ModalContent>
+        <ModalContent className="bg-black text-gray-400">
           {(onClose) => (
             <>
-              <ModalHeader className="flex flex-col gap-1 uppercase text-pink-700">
+              <ModalHeader className="flex flex-col gap-1 uppercase text-pink-700 font-EduSa">
                 {letterName ? letterName : 'Buscando carta'}
               </ModalHeader>
               <ModalBody>
-                {letterContent.length > 0 && letterContent != undefined && letterContent != null ? (
-                  letterContent.map((text, index) => <p key={`${index}-${text}`}>{text}</p>)
+                {letterContent ? (
+                  <ReactMarkdown>{letterContent}</ReactMarkdown>
                 ) : (
                   <section className="w-full p-10 flex justify-center items-center">
                     <Spinner color="danger" />

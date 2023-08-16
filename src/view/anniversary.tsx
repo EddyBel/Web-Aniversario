@@ -2,6 +2,8 @@ import { ChangeEvent, useState } from 'react';
 import { LOGO } from '../assets/index';
 import { useGlobalContext } from '../hook/context.hook';
 import { Navigate } from 'react-router-dom';
+import { Button } from '@nextui-org/react';
+import { BsSendFill } from 'react-icons/bs';
 
 interface DateStructure {
   day: number;
@@ -54,27 +56,24 @@ export const Anniversary = () => {
 
   // Pagina web para llenar el formulario correspondiente
   return (
-    <div className="min-h-screen bg-cover bg-center bg-[url(https://images.pexels.com/photos/261777/pexels-photo-261777.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)]">
-      <section className="backdrop-blur-lg">
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
+    <div className="min-h-screen bg-cover bg-center bg-[url(https://images.pexels.com/photos/1453808/pexels-photo-1453808.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1)]">
+      <section className="backdrop-blur-lg min-h-screen">
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto h-screen lg:py-0">
           <a
             href="/"
-            className="flex items-center mb-6 text-2xl font-Poppins font-semibold text-gray-900 dark:text-white uppercase bg-white dark:bg-gray-950 rounded-lg w-full sm:max-w-md p-2 flex justify-center items-center"
+            className="flex items-center mb-6 text-2xl font-Poppins font-semibold text-gray-100 uppercase bg-gray-950 rounded-lg w-full sm:max-w-md p-2 flex justify-center items-center"
           >
-            <img className="w-8 h-8 mr-2" src={LOGO} alt="logo" />
+            <img className="w-8 h-8 mr-2 img-invert" src={LOGO} alt="logo img-invert" />
             Feliz Aniversario
           </a>
-          <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
+          <div className="w-full bg-gray-950 rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0">
             <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-              <h1 className="text-xl leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white uppercase text-center font-Poppins">
+              <h1 className="text-xl leading-tight tracking-tight md:text-2xl text-gray-200 uppercase text-center font-Poppins">
                 ¿Cuando es nuestro aniversario?
               </h1>
               <form className="space-y-4 md:space-y-6" action="#">
                 <div>
-                  <label
-                    htmlFor="email"
-                    className="block mb-2 text-sm font-medium text-gray-900/80 dark:text-white font-Poppins"
-                  >
+                  <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-400 font-Poppins">
                     Ingresa la fecha
                   </label>
 
@@ -82,7 +81,7 @@ export const Anniversary = () => {
                   <div className="relative max-w-sm">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
                       <svg
-                        className="w-4 h-4 text-gray-500 dark:text-gray-400"
+                        className={`w-4 h-4 ${!error ? 'text-red-600' : 'text-gray-500'}`}
                         aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg"
                         fill="currentColor"
@@ -94,8 +93,8 @@ export const Anniversary = () => {
                     <input
                       datatype=""
                       type="date"
-                      className={`bg-gray-50 border border-gray-300 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
-                        !error ? 'text-red-600 border-red-500' : 'text-gray-900 '
+                      className={`bg-gray-950 border text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:focus:ring-blue-500 dark:focus:border-blue-500 ${
+                        !error ? 'text-red-600 border-red-500' : 'text-gray-600 border-gray-600'
                       }`}
                       placeholder="Select date"
                       required={true}
@@ -123,13 +122,22 @@ export const Anniversary = () => {
                     </div>
                   </div>
                 </div>
-                <button
+                {/* <button
                   type="submit"
                   onClick={submitDateAnniversary}
                   className="w-full text-white transition-transform-background duration-200 bg-pink-500 hover:bg-pink-700 hover:-translate-y-1 focus:ring-4 focus:outline-none focus:ring-pink-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
                 >
                   Enviar fecha
-                </button>
+                </button> */}
+                <Button
+                  onClick={submitDateAnniversary}
+                  className="w-full"
+                  color="danger"
+                  variant="bordered"
+                  startContent={<BsSendFill />}
+                >
+                  Valida la fecha
+                </Button>
               </form>
             </div>
           </div>

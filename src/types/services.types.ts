@@ -39,6 +39,7 @@ export interface TYPE_CONTENT_LETTER {
   parentFolder: string;
   content: string;
   url: string;
+  cover?: string;
 }
 
 export interface TYPE_GITHUB_FILE {
@@ -46,9 +47,15 @@ export interface TYPE_GITHUB_FILE {
   type: string;
   url: string;
   parentFolder: string;
+  cover?: string;
 }
 
 export interface TYPE_GITHUB_TYPE_FILES {
   imgs: TYPE_GITHUB_FILE[];
   letters: TYPE_GITHUB_FILE[];
+}
+
+// Tipos de datos que utilizan los componentes
+export interface TYPE_BASE_COMPONENT {
+  children: React.ReactNode;
 }

@@ -6,3 +6,18 @@ body {
   max-width: 1400px;
   margin: auto;
 }
+
+.img-invert {
+  filter: invert(1);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  background: #000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #141414;
+  border-radius: 12px;
+}
